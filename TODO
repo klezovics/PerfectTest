@@ -1,0 +1,7 @@
+*) Add unit tests for controllers using MockMvc
+*) Add integration tests for controllers
+*) Separate these two into two different test categories
+*) Make these two test categories runnable separately
+*) Make the Repository an interface
+*) Provide a repository implementation, which uses the real DB
+*) Write tests for the JPA layer
