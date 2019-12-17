@@ -1,10 +1,14 @@
 package com.klezovich.perfecttest.msgservice.controller;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MessageDto {
 
-    private final Long id;
-    private final String message;
+    private Long id;
+    private String message;
 }
