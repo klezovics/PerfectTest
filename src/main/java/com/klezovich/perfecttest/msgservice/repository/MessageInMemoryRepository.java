@@ -1,6 +1,7 @@
 package com.klezovich.perfecttest.msgservice.repository;
 
 import com.klezovich.perfecttest.msgservice.domain.entity.Message;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Repository
+@Profile("!test")
 public class MessageInMemoryRepository implements CrudRepository<Message,Long> {
 
     private Map<Long, Message> map = new HashMap<>();
