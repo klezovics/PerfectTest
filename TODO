@@ -1,6 +1,6 @@
-*) Add integration tests for controllers
-*) Separate these two into two different test categories
-*) Make these two test categories runnable separately
-*) Make the Repository an interface
-*) Provide a repository implementation, which uses the real DB
-*) Write tests for the JPA layer
+*) Tidy up test runs
+*) Make sure integration and unit tests are easy to run
+  *) cmd line
+  *) configuration of properties
+*) Tidy up code
+*) Tidy up property files

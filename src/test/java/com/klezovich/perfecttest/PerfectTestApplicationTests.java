@@ -12,7 +12,6 @@ import org.springframework.test.context.junit.jupiter.EnabledIf;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
-// Run code like "mvn test -Drun.integration.tests=true" to enable this test
 @ExtendWith(SpringExtension.class)
 @IntegrationTest
 @SpringBootTest

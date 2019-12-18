@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.websocket.server.PathParam;
 import java.util.Collection;
 import java.util.NoSuchElementException;
+import java.util.stream.StreamSupport;
 
 import static java.util.stream.Collectors.toList;
 
@@ -45,7 +46,7 @@ public class MessageController {
         service.save(mapper.toMessage(dto));
     }
 
-    private Collection<MessageDto> collectionToDto(Collection<Message> messages) {
-        return messages.stream().map(mapper::toMessageDto).collect(toList());
+    private Collection<MessageDto> collectionToDto(Iterable<Message> messages) {
+        return StreamSupport.stream(messages.spliterator(),false).map(mapper::toMessageDto).collect(toList());
     }
 }
