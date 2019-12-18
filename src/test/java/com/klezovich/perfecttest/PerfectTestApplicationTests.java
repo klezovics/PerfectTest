@@ -1,5 +1,6 @@
 package com.klezovich.perfecttest;
 
+import com.klezovich.perfecttest.annotation.IntegrationTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 // Run code like "mvn test -Drun.integration.tests=true" to enable this test
 @ExtendWith(SpringExtension.class)
-@EnabledIfSystemProperty(named="run.integration.tests", matches ="true")
+@IntegrationTest
 @SpringBootTest
 class PerfectTestApplicationTests {
 
