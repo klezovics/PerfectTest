@@ -1,8 +1,2 @@
-*) Tidy up test runs
-*) Make sure integration and unit tests are easy to run
-  *) cmd line
-  *) configuration of properties
-*) Tidy up code
-*) Tidy up property files
-
-*) Create easy GUI
+*) Have a birds eye view and tidy up app
+*) Think about dependency structure

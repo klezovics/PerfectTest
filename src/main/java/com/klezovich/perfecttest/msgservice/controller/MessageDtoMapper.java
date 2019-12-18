@@ -6,11 +6,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessageDtoMapper {
 
-    Message toMessage(MessageDto dto) {
+    public Message toMessage(MessageDto dto) {
         return new Message(dto.getId(), dto.getMessage());
     }
 
-    MessageDto toMessageDto(Message message) {
+    public MessageDto toMessageDto(Message message) {
         return new MessageDto(message.getId(), message.getMessage());
     }
 }

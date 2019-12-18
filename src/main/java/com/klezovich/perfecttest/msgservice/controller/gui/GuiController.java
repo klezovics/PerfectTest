@@ -1,5 +1,7 @@
-package com.klezovich.perfecttest.msgservice.controller;
+package com.klezovich.perfecttest.msgservice.controller.gui;
 
+import com.klezovich.perfecttest.msgservice.controller.MessageDto;
+import com.klezovich.perfecttest.msgservice.controller.MessageDtoMapper;
 import com.klezovich.perfecttest.msgservice.domain.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
