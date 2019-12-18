@@ -1,10 +1,14 @@
 package com.klezovich.perfecttest.msgservice.domain.service;
 
 import com.klezovich.perfecttest.msgservice.domain.entity.Message;
-import com.klezovich.perfecttest.msgservice.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class MessageService {
@@ -21,16 +25,16 @@ public class MessageService {
         return true;
     }
 
-    public Message get(Long id) {
-        var message = repository.findById(id);
-        if(message.isPresent()) {
-            return message.get();
-        }
-
-        throw new RuntimeException("Element not found");
+    public Optional<Message> get(Long id) {
+        return repository.findById(id);
     }
 
-    public Iterable<Message> getAll() {
-        return repository.findAll();
+    public Collection<Message> getAll() {
+        return toCollection(repository.findAll());
+    }
+
+    private Collection<Message> toCollection( Iterable<Message> messages) {
+        return StreamSupport.stream(messages.spliterator(), false)
+            .collect(Collectors.toList());
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
-import java.util.stream.StreamSupport;
+import java.util.NoSuchElementException;
 
 import static java.util.stream.Collectors.toList;
 
@@ -32,8 +32,14 @@ public class MessageController {
     }
 
     @GetMapping("/get/{id}")
-    public MessageDto get( @PathVariable("id") Long id) {
-        return mapper.toMessageDto(service.get(id));
+    public MessageDto get(@PathVariable("id") Long id) {
+
+        var message = service.get(id);
+        if (message.isPresent()) {
+            return mapper.toMessageDto(message.get());
+        }
+
+        throw new NoSuchElementException("No element with id:" + id);
     }
 
     @PostMapping("/save")
@@ -41,7 +47,7 @@ public class MessageController {
         service.save(mapper.toMessage(dto));
     }
 
-    private Collection<MessageDto> iterableToDto(Iterable<Message> messages) {
-        return StreamSupport.stream(messages.spliterator(),false).map(mapper::toMessageDto).collect(toList());
+    private Collection<MessageDto> iterableToDto(Collection<Message> messages) {
+        return messages.stream().map(mapper::toMessageDto).collect(toList());
     }
 }

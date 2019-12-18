@@ -46,7 +46,7 @@ class MessageServiceTest {
         when(repository.findById(1L)).thenReturn(Optional.of(message));
 
         var msg = service.get(1L);
-        assertThat(message, is(msg));
+        assertThat(message, is(msg.get()));
     }
 
     @Test

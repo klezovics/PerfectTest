@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -77,7 +78,7 @@ class MessageControllerTest {
         var message = new Message(id,text);
         var messageDto = new MessageDto(id,text);
 
-        when(service.get(message.getId())).thenReturn(message);
+        when(service.get(message.getId())).thenReturn(Optional.of(message));
         when(mapper.toMessageDto(message)).thenReturn(messageDto);
 
         var response = mvc.perform(
