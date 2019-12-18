@@ -17,7 +17,7 @@ public class MessageRepository {
         map.put(m.getId(), m);
     }
 
-    public Message get(Long id) {
+    public Message findById(Long id) {
         var value = map.get(id);
         if (null == value) {
             throw new NoSuchElementException("id:" + id);
@@ -25,7 +25,7 @@ public class MessageRepository {
         return value;
     }
 
-    public Collection<Message> getAll() {
+    public Collection<Message> findAll() {
         return map.values();
     }
 }

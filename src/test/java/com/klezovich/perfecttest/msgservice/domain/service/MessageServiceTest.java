@@ -37,7 +37,7 @@ class MessageServiceTest {
 
     @Test
     void testSingleMessageCanBeRead() {
-        when(repository.get(1L)).thenReturn(message);
+        when(repository.findById(1L)).thenReturn(message);
 
         var msg = service.get(1L);
         assertThat(message, is(msg));
@@ -45,9 +45,9 @@ class MessageServiceTest {
 
     @Test
     void testMultipleMessagesCanBeRead() {
-        when(repository.getAll()).thenReturn(List.of(message));
+        when(repository.findAll()).thenReturn(List.of(message));
 
-        var msgs = repository.getAll();
+        var msgs = repository.findAll();
         assertThat(msgs, hasSize(1) );
         assertThat(msgs, hasItem(message));
     }

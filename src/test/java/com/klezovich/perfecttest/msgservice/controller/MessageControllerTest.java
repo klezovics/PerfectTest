@@ -81,7 +81,7 @@ class MessageControllerTest {
         when(mapper.toMessageDto(message)).thenReturn(messageDto);
 
         var response = mvc.perform(
-            get("/get/"+id)
+            get("/findById/"+id)
         ).andReturn().getResponse();
 
         assertThat(response.getStatus(), is(HttpStatus.OK.value()));
@@ -99,7 +99,7 @@ class MessageControllerTest {
         when(service.get(id)).thenThrow(NoSuchElementException.class);
 
         var response = mvc.perform(
-            get("/get/"+id)
+            get("/findById/"+id)
         ).andReturn().getResponse();
 
         assertThat(response.getStatus(), is(HttpStatus.NOT_FOUND.value()));

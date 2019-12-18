@@ -23,10 +23,10 @@ public class MessageService {
     }
 
     public Message get(Long id) {
-        return repository.get(id);
+        return repository.findById(id);
     }
 
     public Collection<Message> getAll() {
-        return repository.getAll();
+        return repository.findAll();
     }
 }
