@@ -12,18 +12,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class MessageControllerTest {
 
@@ -65,7 +67,7 @@ class MessageControllerTest {
         )
             .andReturn().getResponse();
 
-        assertThat(response.getStatus(),is(HttpStatus.OK.value()));
+        assertThat(response.getStatus(), is(HttpStatus.OK.value()));
         verify(service).save(message);
     }
 
@@ -74,18 +76,28 @@ class MessageControllerTest {
         var id = 0L;
         var text = "hello";
 
-        var message = new Message(id,text);
-        var messageDto = new MessageDto(id,text);
+        var message = new Message(id, text);
+        var messageDto = new MessageDto(id, text);
 
         when(service.get(message.getId())).thenReturn(Optional.of(message));
         when(mapper.toMessageDto(message)).thenReturn(messageDto);
 
         var response = mvc.perform(
-            get("/get/"+id)
+            get("/get/" + id)
         ).andReturn().getResponse();
 
         assertThat(response.getStatus(), is(HttpStatus.OK.value()));
         assertThat(response.getContentAsString(), is(jsonMessageDto.write(messageDto).getJson()));
+    }
+
+    @Test
+    public void canDeleteMessage() throws Exception {
+        var id = 1L;
+
+        doNothing().when(service).delete(id);
+
+        mvc.perform(delete("/" + id))
+            .andExpect(status().is(HttpStatus.NO_CONTENT.value()));
     }
 
     @Test
@@ -95,7 +107,7 @@ class MessageControllerTest {
         when(service.get(id)).thenThrow(NoSuchElementException.class);
 
         var response = mvc.perform(
-            get("/get/"+id)
+            get("/get/" + id)
         ).andReturn().getResponse();
 
         assertThat(response.getStatus(), is(HttpStatus.NOT_FOUND.value()));

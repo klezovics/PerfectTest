@@ -5,12 +5,15 @@ import com.klezovich.perfecttest.msgservice.domain.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 
@@ -47,6 +50,12 @@ public class MessageController {
     @PostMapping("/save")
     public void save(@RequestBody MessageDto dto) {
         service.save(mapper.toMessage(dto));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteMessage(@PathParam("id") Long id) {
+        service.delete(id);
     }
 
     private Collection<MessageDto> iterableToDto(Collection<Message> messages) {
