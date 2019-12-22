@@ -1,2 +1,6 @@
+*) Rewrite unit tests in the Spring Guru style
+*) Add mvc unit tests that input JSON into the controller
+*) Add mvc unit tests that output JSON as part of the response
+
 *) Have a birds eye view and tidy up app
 *) Think about dependency structure
