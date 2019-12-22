@@ -91,10 +91,6 @@ class MessageControllerTest {
     @Test
     public void notFoundMessageMapsToNotFoundResponseCode() throws Exception {
         var id = 0L;
-        var text = "hello";
-
-        var message = new Message(id,text);
-        var messageDto = new MessageDto(id,text);
 
         when(service.get(id)).thenThrow(NoSuchElementException.class);
 
