@@ -3,6 +3,8 @@ package com.klezovich.perfecttest.msgservice.controller;
 import com.klezovich.perfecttest.msgservice.domain.entity.Message;
 import com.klezovich.perfecttest.msgservice.domain.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,11 +34,11 @@ public class MessageController {
     }
 
     @GetMapping("/get/{id}")
-    public MessageDto get(@PathVariable("id") Long id) {
+    public ResponseEntity<MessageDto> get(@PathVariable("id") Long id) {
 
         var message = service.get(id);
         if (message.isPresent()) {
-            return mapper.toMessageDto(message.get());
+            return new ResponseEntity(mapper.toMessageDto(message.get()), HttpStatus.OK);
         }
 
         throw new NoSuchElementException("No element with id:" + id);

@@ -45,7 +45,6 @@ class MessageControllerTest {
         initMocks(this);
         JacksonTester.initFields(this, new ObjectMapper());
 
-        WebApplicationContext context;
         mvc = MockMvcBuilders.standaloneSetup(controller)
             .setControllerAdvice(new GlobalControllerAdvice())
             .build();
