@@ -25,6 +25,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class MessageControllerTest {
@@ -82,12 +83,10 @@ class MessageControllerTest {
         when(service.get(message.getId())).thenReturn(Optional.of(message));
         when(mapper.toMessageDto(message)).thenReturn(messageDto);
 
-        var response = mvc.perform(
-            get("/get/" + id)
-        ).andReturn().getResponse();
-
-        assertThat(response.getStatus(), is(HttpStatus.OK.value()));
-        assertThat(response.getContentAsString(), is(jsonMessageDto.write(messageDto).getJson()));
+        mvc.perform(get("/get/" + id))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.id").value(id))
+            .andExpect(jsonPath("$.message").value(text));
     }
 
     @Test
