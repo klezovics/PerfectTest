@@ -19,7 +19,7 @@ public class Producer {
         this.template = template;
     }
 
-    @Scheduled(fixedDelay = 1000)
+    //@Scheduled(fixedDelay = 1000)
     public void produceMessages() {
         String message = "msg:" + System.currentTimeMillis();
         log.info("PRODUCER: Sent" + message);

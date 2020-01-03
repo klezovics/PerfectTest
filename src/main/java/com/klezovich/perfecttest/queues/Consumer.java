@@ -1,11 +1,12 @@
 package com.klezovich.perfecttest.queues;
 
 import lombok.extern.java.Log;
+import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 @Component
-//@EnableJms
+@EnableJms
 @Log
 public class Consumer {
 
