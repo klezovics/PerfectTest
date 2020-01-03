@@ -1,10 +1,9 @@
-package com.klezovich.perfecttest.camel;
+package com.klezovich.perfecttest.tech.camel;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.processor.aggregate.AggregationStrategy;
-import org.springframework.stereotype.Component;
 
 //@Component
 public class ConsoleRoute extends RouteBuilder {
