@@ -1,5 +1,8 @@
 package com.klezovich.perfecttest.patterns;
 
+import com.klezovich.perfecttest.patterns.visitor.ClientOne;
+import com.klezovich.perfecttest.patterns.visitor.ClientTwo;
+import com.klezovich.perfecttest.patterns.visitor.ConfigurationVisitor;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

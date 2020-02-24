@@ -1,4 +1,4 @@
-package com.klezovich.perfecttest.patterns;
+package com.klezovich.perfecttest.patterns.visitor;
 
 public abstract class Client {
 
