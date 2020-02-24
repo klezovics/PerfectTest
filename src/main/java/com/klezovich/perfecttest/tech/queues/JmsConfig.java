@@ -1,4 +1,4 @@
-package com.klezovich.perfecttest.queues;
+package com.klezovich.perfecttest.tech.queues;
 
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.klezovich.perfecttest.queues;
+package com.klezovich.perfecttest.tech.queues;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;

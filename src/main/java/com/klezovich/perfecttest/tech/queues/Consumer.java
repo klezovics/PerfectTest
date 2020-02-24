@@ -1,4 +1,4 @@
-package com.klezovich.perfecttest.queues;
+package com.klezovich.perfecttest.tech.queues;
 
 import lombok.extern.java.Log;
 import org.springframework.jms.annotation.EnableJms;

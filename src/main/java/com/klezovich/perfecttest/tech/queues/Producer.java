@@ -1,8 +1,7 @@
-package com.klezovich.perfecttest.queues;
+package com.klezovich.perfecttest.tech.queues;
 
 import lombok.extern.java.Log;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.jms.Queue;
